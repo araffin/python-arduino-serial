@@ -42,7 +42,3 @@ def test_read_write_orders():
 
     assert_eq(read_3rd_order, Order.ERROR)
     assert_eq(read_big_number, big_number)
-
-
-if __name__ == '__main__':
-    read_write_orders()
