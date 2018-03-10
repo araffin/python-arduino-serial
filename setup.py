@@ -6,6 +6,7 @@ setup(name="robust_serial",
                 if package.startswith('robust_serial')],
       install_requires=[
           'pyserial',
+          'enum34'
       ],
       tests_require=['pytest'],
       author="Antonin RAFFIN",

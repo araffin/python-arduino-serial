@@ -4,9 +4,12 @@
 
 **Robust Arduino Serial** is a simple and robust serial communication protocol. It was designed to make two arduinos communicate, but can also be useful when you want a computer (e.g. a Raspberry Pi) to communicate with an Arduino.
 
+It supports both Python 2 and 3.
+
 ## Installation
 
 ```
+git clone https://github.com/araffin/python-arduino-serial.git
 pip install -e .
 ```
 
