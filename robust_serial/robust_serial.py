@@ -106,5 +106,3 @@ def decode_order(f, byte, debug=False):
     except Exception as e:
         print("Error decoding order {}: {}".format(byte, e))
         print('byte={0:08b}'.format(byte))
-
-

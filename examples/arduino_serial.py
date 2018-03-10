@@ -1,24 +1,14 @@
 from __future__ import print_function, division, absolute_import
 
 import time
-import threading
 
-from robust_serial import write_order, Order
-from robust_serial.threads import CommandThread, ListenerThread
-
-from robust_serial.utils import open_serial_port, CustomQueue
-
-
-def reset_command_queue():
-    """
-    Clear the command queue
-    """
-    command_queue.clear()
+from robust_serial import write_order, Order, write_i8, write_i16, read_i8
+from robust_serial.utils import open_serial_port
 
 
 if __name__ == '__main__':
     try:
-        serial_file = open_serial_port(baudrate=115200)
+        serial_file = open_serial_port(baudrate=115200, timeout=None)
     except Exception as e:
         raise e
 
@@ -37,36 +27,15 @@ if __name__ == '__main__':
 
     print("Connected to Arduino")
 
-    # Create Command queue for sending orders
-    command_queue = CustomQueue(2)
-    # Number of messages we can send to the Arduino without receiving an acknowledgment
-    n_messages_allowed = 3
-    n_received_semaphore = threading.Semaphore(n_messages_allowed)
-    # Lock for accessing serial file (to avoid reading and writing at the same time)
-    serial_lock = threading.Lock()
+    motor_order = Order.MOTOR.value
+    motor_speed = -56
 
-    # Event to notify threads that they should terminate
-    exit_event = threading.Event()
+    write_i8(serial_file, motor_order)
+    write_i8(serial_file, motor_speed)
 
-    print("Starting Communication Threads")
-    # Threads for arduino communication
-    threads = [CommandThread(serial_file, command_queue, exit_event, n_received_semaphore, serial_lock),
-               ListenerThread(serial_file, exit_event, n_received_semaphore, serial_lock)]
-    for t in threads:
-        t.start()
+    write_i8(serial_file, Order.SERVO.value)
+    write_i16(serial_file, 120)
 
-    # Send 3 orders to the arduino
-    command_queue.put((Order.MOTOR, -56))
-    command_queue.put((Order.SERVO, 120))
-    time.sleep(2)
-    #
-    command_queue.put((Order.MOTOR, 0))
-
-    # End the threads
-    exit_event.set()
-    n_received_semaphore.release()
-
-    print("Exiting...")
-
-    for t in threads:
-        t.join()
+    for _ in range(10):
+        order = read_i8(serial_file)
+        print("Ordered received: {:?}", Order(order))

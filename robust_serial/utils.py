@@ -60,18 +60,19 @@ def get_serial_ports():
     return results
 
 
-def open_serial_port(serial_port=None, baudrate=115200):
+def open_serial_port(serial_port=None, baudrate=115200, timeout=0, write_timeout=0):
     """
     Try to open serial port with Arduino
     If not port is specified, it will be automatically detected
     :param serial_port: (str)
     :param baudrate: (int)
+    :param timeout: (int) None -> blocking mode
+    :param write_timeout: (int)
     :return: (Serial Object)
     """
     # Open serial port (for communication with Arduino)
     if serial_port is None:
         serial_port = get_serial_ports()[0]
-    # TODO: try with timeout=None -> blocking mode
     # timeout=0 non-blocking mode, return immediately in any case, returning zero or more,
     # up to the requested number of bytes
-    return serial.Serial(port=serial_port, baudrate=baudrate, timeout=0, writeTimeout=0)
+    return serial.Serial(port=serial_port, baudrate=baudrate, timeout=timeout, writeTimeout=write_timeout)
