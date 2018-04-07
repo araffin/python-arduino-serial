@@ -6,6 +6,17 @@
 
 It supports both Python 2 and 3.
 
+This repository is part of the Robust Arduino Serial project, main repository: [https://github.com/araffin/arduino-robust-serial](https://github.com/araffin/arduino-robust-serial)
+
+**Please read the [Medium Article](https://medium.com/@araffin/simple-and-robust-computer-arduino-serial-communication-f91b95596788) to have an overview of this protocol.**
+
+Implementations are available in various programming languages:
+
+- [Arduino](https://github.com/araffin/arduino-robust-serial)
+- [Python](https://github.com/araffin/python-arduino-serial)
+- [C++](https://github.com/araffin/cpp-arduino-serial)
+- [Rust](https://github.com/araffin/rust-arduino-serial)
+
 ## Installation
 
 ```
@@ -26,7 +37,7 @@ Read write in a file (WARNING: the file will be deleted when the script exits)
 python -m examples.file_read_write -f test.txt
 ```
 
-Serial communication with an Arduino: [Arduino Source Code](https://github.com/sergionr2/RacingRobot/tree/master/arduino)
+Serial communication with an Arduino: [Arduino Source Code](https://github.com/araffin/arduino-robust-serial/tree/master/arduino-board/)
 ```
 python -m examples.arduino_serial
 ```
