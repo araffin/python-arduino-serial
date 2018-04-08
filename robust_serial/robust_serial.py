@@ -14,6 +14,12 @@ class Order(Enum):
     RECEIVED = 5
     STOP = 6
 
+def read_order(f):
+    """
+    :param f: file handler or serial file
+    :return: (Order Enum Object)
+    """
+    return Order(read_i8(f))
 
 def read_i8(f):
     """
@@ -50,8 +56,12 @@ def write_i8(f, value):
         print("Value error:{}".format(value))
 
 
-# Alias
-write_order = write_i8
+def write_order(f, order):
+    """
+    :param f: file handler or serial file
+    :param order: (Order Enum Object)
+    """
+    write_i8(f, order.value)
 
 
 def write_i16(f, value):

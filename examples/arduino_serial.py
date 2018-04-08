@@ -2,7 +2,7 @@ from __future__ import print_function, division, absolute_import
 
 import time
 
-from robust_serial import write_order, Order, write_i8, write_i16, read_i8
+from robust_serial import write_order, Order, write_i8, write_i16, read_i8, read_order
 from robust_serial.utils import open_serial_port
 
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # Initialize communication with Arduino
     while not is_connected:
         print("Waiting for arduino...")
-        write_order(serial_file, Order.HELLO.value)
+        write_order(serial_file, Order.HELLO)
         bytes_array = bytearray(serial_file.read(1))
         if not bytes_array:
             time.sleep(2)
@@ -27,15 +27,15 @@ if __name__ == '__main__':
 
     print("Connected to Arduino")
 
-    motor_order = Order.MOTOR.value
     motor_speed = -56
 
-    write_i8(serial_file, motor_order)
+    # Equivalent to write_i8(serial_file, Order.MOTOR.value)
+    write_order(serial_file, Order.MOTOR)
     write_i8(serial_file, motor_speed)
 
-    write_i8(serial_file, Order.SERVO.value)
+    write_order(serial_file, Order.SERVO)
     write_i16(serial_file, 120)
 
     for _ in range(10):
-        order = read_i8(serial_file)
-        print("Ordered received: {:?}", Order(order))
+        order = read_order(serial_file)
+        print("Ordered received: {:?}", order)

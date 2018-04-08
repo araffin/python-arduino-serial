@@ -26,7 +26,7 @@ if __name__ == '__main__':
     # Initialize communication with Arduino
     while not is_connected:
         print("Waiting for arduino...")
-        write_order(serial_file, Order.HELLO.value)
+        write_order(serial_file, Order.HELLO)
         bytes_array = bytearray(serial_file.read(1))
         if not bytes_array:
             time.sleep(2)

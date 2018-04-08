@@ -44,7 +44,7 @@ class CommandThread(threading.Thread):
                 continue
 
             with self.serial_lock:
-                write_order(self.serial_file, order.value)
+                write_order(self.serial_file, order)
                 # print("Sent {}".format(order))
                 if order == Order.MOTOR:
                     write_i8(self.serial_file, param)

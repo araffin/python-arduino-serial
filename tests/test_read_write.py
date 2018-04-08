@@ -1,7 +1,7 @@
 from __future__ import print_function, division, absolute_import
 from tempfile import TemporaryFile
 
-from robust_serial import Order, write_i8, write_i16, write_i32, read_i8, read_i16, read_i32
+from robust_serial import Order, write_order, read_order, write_i8, write_i16, write_i32, read_i8, read_i16, read_i32
 
 
 def assert_eq(left, right):
@@ -15,23 +15,25 @@ def test_read_write_orders():
 
     f = TemporaryFile()
 
-    write_i8(f, Order.MOTOR.value)
+    # Equivalent to write_i8(f, Order.MOTOR.value)
+    write_order(f, Order.MOTOR)
     write_i8(f, motor_speed)
 
-    write_i8(f, Order.SERVO.value)
+    write_order(f, Order.SERVO)
     write_i16(f, servo_angle)
 
-    write_i8(f, Order.ERROR.value)
+    write_order(f, Order.ERROR)
     write_i32(f, big_number)
 
     f.seek(0, 0)
-    read_1st_order = Order(read_i8(f))
+    # Equivalent to Order(read_i8(f))
+    read_1st_order = read_order(f)
     read_motor_speed = read_i8(f)
 
-    read_2nd_order = Order(read_i8(f))
+    read_2nd_order = read_order(f)
     read_servo_angle = read_i16(f)
 
-    read_3rd_order = Order(read_i8(f))
+    read_3rd_order = read_order(f)
     read_big_number = read_i32(f)
 
     assert_eq(read_1st_order, Order.MOTOR)
