@@ -41,3 +41,23 @@ Serial communication with an Arduino: [Arduino Source Code](https://github.com/a
 ```
 python -m examples.arduino_serial
 ```
+
+### Bluetooth Example
+
+Dependency:
+```
+sudo apt-get install libbluetooth-dev bluez
+pip install pybluez
+```
+
+You need to change the server mac address `SERVER_ADDR`, you can use `hciconfig` to know the mac address of your computer.
+
+Server:
+```
+python -m examples.bluetooth_example --server
+```
+
+Client:
+```
+python -m examples.bluetooth_example --client
+```
