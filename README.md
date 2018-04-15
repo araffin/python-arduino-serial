@@ -42,9 +42,9 @@ Serial communication with an Arduino: [Arduino Source Code](https://github.com/a
 python -m examples.arduino_serial
 ```
 
-### Bluetooth Example
+### Bluetooth Example with Two Computers
 
-Dependency:
+Dependencies:
 ```
 sudo apt-get install libbluetooth-dev bluez
 pip install pybluez
