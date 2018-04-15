@@ -4,7 +4,7 @@ import argparse
 
 import bluetooth
 
-from robust_serial import write_order, write_i8, write_i16, read_i8, read_order
+from robust_serial import write_i32, read_i32
 
 PORT = 4885
 # show mac address: hciconfig
