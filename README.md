@@ -41,3 +41,21 @@ Serial communication with an Arduino: [Arduino Source Code](https://github.com/a
 ```
 python -m examples.arduino_serial
 ```
+
+### Bluetooth Example
+
+Dependency:
+```
+sudo apt-get install libbluetooth-dev bluez
+pip install pybluez
+```
+
+Server:
+```
+python -m examples.bluetooth_example --server
+```
+
+Client:
+```
+python -m examples.bluetooth_example --client
+```
