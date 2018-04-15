@@ -50,6 +50,8 @@ sudo apt-get install libbluetooth-dev bluez
 pip install pybluez
 ```
 
+You need to change the server mac address `SERVER_ADDR`, you can use `hciconfig` to know the mac address of your computer.
+
 Server:
 ```
 python -m examples.bluetooth_example --server
