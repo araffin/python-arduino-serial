@@ -6,7 +6,7 @@ import bluetooth
 
 from robust_serial import write_i8, write_i32, read_i8, read_i32
 
-PORT = 4885
+CHANNEL = 1
 # show mac address: hciconfig
 SERVER_ADDR = "B8:27:EB:F1:E4:5F"
 
@@ -16,7 +16,7 @@ def receive_messages():
     Receive messages (server side)
     """
     server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-    server_sock.bind(("", PORT))
+    server_sock.bind(("", CHANNEL))
     print("Waiting for client...")
     # Wait for client
     server_sock.listen(1)
@@ -42,7 +42,7 @@ def send_messages(mac_address):
     :param mac_address: (str)
     """
     socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-    socket.connect((mac_address, PORT))
+    socket.connect((mac_address, CHANNEL))
 
     print("Connected to {}".format(mac_address))
     # Rename function to work with the lib
