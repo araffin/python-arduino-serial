@@ -19,6 +19,12 @@ Implementations are available in various programming languages:
 
 ## Installation
 
+Using pip:
+```
+pip install robust_serial
+```
+
+From Source:
 ```
 git clone https://github.com/araffin/python-arduino-serial.git
 pip install -e .
