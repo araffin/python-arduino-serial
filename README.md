@@ -42,6 +42,20 @@ Serial communication with an Arduino: [Arduino Source Code](https://github.com/a
 python -m examples.arduino_serial
 ```
 
+### Example: Communication with Sockets
+
+It can be useful when you want two programs to communicate over a network (e.g. using wifi) or even locally on the same computer (e.g. when you want a python2 script that communicates with a python3 script).
+
+1. Start the server:
+```
+python -m examples.socket_example --server
+```
+
+2. Run the client:
+```
+python -m examples.socket_example --client
+```
+
 ### Bluetooth Example with Two Computers
 
 Dependencies:
