@@ -14,7 +14,8 @@ rate = 1 / 2000  # 2000 Hz (limit the rate of communication with the arduino)
 class CommandThread(threading.Thread):
     """
     Thread that send orders to the arduino
-    it blocks if there no more send_token left (here it is the n_received_semaphore)
+    it blocks if there no more send_token left (here it is the n_received_semaphore).
+
     :param serial_file: (Serial object)
     :param command_queue: (Queue)
     :param exit_event: (Threading.Event object)
@@ -58,6 +59,7 @@ class ListenerThread(threading.Thread):
     """
     Thread that listen to the Arduino
     It is used to add send_tokens to the n_received_semaphore
+
     :param serial_file: (Serial object)
     :param exit_event: (threading.Event object)
     :param n_received_semaphore: (threading.Semaphore)

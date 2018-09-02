@@ -6,6 +6,10 @@ from enum import Enum
 
 
 class Order(Enum):
+    """
+    Pre-defined orders
+    """
+
     HELLO = 0
     SERVO = 1
     MOTOR = 2
