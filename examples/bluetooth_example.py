@@ -1,4 +1,3 @@
-from __future__ import division, print_function
 
 import argparse
 
@@ -22,15 +21,15 @@ def receive_messages():
     server_sock.listen(1)
 
     client_sock, client_address = server_sock.accept()
-    print("Accepted connection from {}".format(client_address))
+    print(f"Accepted connection from {client_address}")
     # Rename function to work with the lib
     client_sock.read = client_sock.recv
 
     for i in range(10):
-        print("Received (i8): {}".format(read_i8(client_sock)))
+        print(f"Received (i8): {read_i8(client_sock)}")
     big_number = read_i32(client_sock)
 
-    print("Received (i32): {}".format(big_number))
+    print(f"Received (i32): {big_number}")
 
     client_sock.close()
     server_sock.close()
@@ -44,7 +43,7 @@ def send_messages(mac_address):
     socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
     socket.connect((mac_address, CHANNEL))
 
-    print("Connected to {}".format(mac_address))
+    print(f"Connected to {mac_address}")
     # Rename function to work with the lib
     socket.write = socket.send
     for i in range(10):
@@ -59,7 +58,7 @@ def discover_devices():
     """
     nearby_devices = bluetooth.discover_devices()
     for bdaddr in nearby_devices:
-        print("{} + [{}]".format(bluetooth.lookup_name(bdaddr), bdaddr))
+        print(f"{bluetooth.lookup_name(bdaddr)} + [{bdaddr}]")
 
 
 if __name__ == "__main__":

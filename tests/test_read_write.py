@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division, print_function
 
 from tempfile import TemporaryFile
 
@@ -6,7 +5,7 @@ from robust_serial import Order, read_i8, read_i16, read_i32, read_order, write_
 
 
 def assert_eq(left, right):
-    assert left == right, "{} != {}".format(left, right)
+    assert left == right, f"{left} != {right}"
 
 
 def test_read_write_orders():

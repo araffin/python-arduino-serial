@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division, print_function
 
 import glob
 import sys
@@ -49,7 +48,7 @@ def get_serial_ports():
     elif sys.platform.startswith("darwin"):
         ports = glob.glob("/dev/tty.*")
     else:
-        raise EnvironmentError("Unsupported platform")
+        raise OSError("Unsupported platform")
 
     results = []
     for port in ports:

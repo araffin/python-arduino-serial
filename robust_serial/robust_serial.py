@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division, print_function, unicode_literals
 
 import struct
 from enum import Enum
@@ -58,7 +57,7 @@ def write_i8(f, value):
     if -128 <= value <= 127:
         f.write(struct.pack("<b", value))
     else:
-        print("Value error:{}".format(value))
+        print(f"Value error:{value}")
 
 
 def write_order(f, order):
@@ -99,15 +98,15 @@ def decode_order(f, byte, debug=False):
             angle = read_i16(f)
             # Bit representation
             # print('{0:016b}'.format(angle))
-            msg = "SERVO {}".format(angle)
+            msg = f"SERVO {angle}"
         elif order == Order.MOTOR:
             speed = read_i8(f)
-            msg = "motor {}".format(speed)
+            msg = f"motor {speed}"
         elif order == Order.ALREADY_CONNECTED:
             msg = "ALREADY_CONNECTED"
         elif order == Order.ERROR:
             error_code = read_i16(f)
-            msg = "Error {}".format(error_code)
+            msg = f"Error {error_code}"
         elif order == Order.RECEIVED:
             msg = "RECEIVED"
         elif order == Order.STOP:
@@ -119,5 +118,5 @@ def decode_order(f, byte, debug=False):
         if debug:
             print(msg)
     except Exception as e:
-        print("Error decoding order {}: {}".format(byte, e))
-        print("byte={0:08b}".format(byte))
+        print(f"Error decoding order {byte}: {e}")
+        print(f"byte={byte:08b}")

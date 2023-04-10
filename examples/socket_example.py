@@ -1,4 +1,3 @@
-from __future__ import division, print_function
 
 import argparse
 import socket
@@ -9,14 +8,14 @@ PORT = 4444
 SERVER_ADDR = "localhost"
 
 
-class SocketAdapter(object):
+class SocketAdapter:
     """
     Wrapper around socket object to use the robust_serial lib
     It just renames recv() to read() and send() to write()
     """
 
     def __init__(self, client_socket):
-        super(SocketAdapter, self).__init__()
+        super().__init__()
         self.client_socket = client_socket
 
     def read(self, num_bytes):
@@ -40,15 +39,15 @@ def receive_messages():
     server_socket.listen(1)
 
     client_sock, client_address = server_socket.accept()
-    print("Accepted connection from {}".format(client_address))
+    print(f"Accepted connection from {client_address}")
     # Wrap socket to work with the lib
     client_sock = SocketAdapter(client_sock)
 
     for i in range(10):
-        print("Received (i8): {}".format(read_i8(client_sock)))
+        print(f"Received (i8): {read_i8(client_sock)}")
     big_number = read_i32(client_sock)
 
-    print("Received (i32): {}".format(big_number))
+    print(f"Received (i32): {big_number}")
 
     print("Server exiting...")
     client_sock.close()
@@ -66,7 +65,7 @@ def send_messages(server_address):
     # Wrap socket to work with the lib
     client_socket = SocketAdapter(client_socket)
 
-    print("Connected to {}".format(server_address))
+    print(f"Connected to {server_address}")
     for i in range(10):
         write_i8(client_socket, i)
     write_i32(client_socket, 32768)
