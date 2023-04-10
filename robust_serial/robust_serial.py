@@ -1,6 +1,6 @@
-
 import struct
 from enum import Enum
+from typing import BinaryIO
 
 
 class Order(Enum):
@@ -17,7 +17,7 @@ class Order(Enum):
     STOP = 6
 
 
-def read_order(f):
+def read_order(f: BinaryIO) -> Order:
     """
     :param f: file handler or serial file
     :return: (Order Enum Object)
@@ -25,7 +25,7 @@ def read_order(f):
     return Order(read_i8(f))
 
 
-def read_i8(f):
+def read_i8(f: BinaryIO) -> Order:
     """
     :param f: file handler or serial file
     :return: (int8_t)
@@ -33,7 +33,7 @@ def read_i8(f):
     return struct.unpack("<b", bytearray(f.read(1)))[0]
 
 
-def read_i16(f):
+def read_i16(f: BinaryIO) -> Order:
     """
     :param f: file handler or serial file
     :return: (int16_t)
@@ -49,7 +49,7 @@ def read_i32(f):
     return struct.unpack("<l", bytearray(f.read(4)))[0]
 
 
-def write_i8(f, value):
+def write_i8(f: BinaryIO, value: int) -> None:
     """
     :param f: file handler or serial file
     :param value: (int8_t)
@@ -60,7 +60,7 @@ def write_i8(f, value):
         print(f"Value error:{value}")
 
 
-def write_order(f, order):
+def write_order(f: BinaryIO, order: Order) -> None:
     """
     :param f: file handler or serial file
     :param order: (Order Enum Object)
@@ -68,7 +68,7 @@ def write_order(f, order):
     write_i8(f, order.value)
 
 
-def write_i16(f, value):
+def write_i16(f: BinaryIO, value: int) -> None:
     """
     :param f: file handler or serial file
     :param value: (int16_t)
@@ -76,7 +76,7 @@ def write_i16(f, value):
     f.write(struct.pack("<h", value))
 
 
-def write_i32(f, value):
+def write_i32(f: BinaryIO, value: int) -> None:
     """
     :param f: file handler or serial file
     :param value: (int32_t)
@@ -84,7 +84,7 @@ def write_i32(f, value):
     f.write(struct.pack("<l", value))
 
 
-def decode_order(f, byte, debug=False):
+def decode_order(f: BinaryIO, byte: int, debug: bool = False) -> None:
     """
     :param f: file handler or serial file
     :param byte: (int8_t)

@@ -1,8 +1,7 @@
-
 import argparse
 import os
 
-from robust_serial import Order, read_i8, read_i16, read_i32, read_order, write_i8, write_i16, write_i32, write_order
+from robust_serial import Order, read_i16, read_i32, read_order, write_i8, write_i16, write_i32, write_order
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Reading / Writing a file")

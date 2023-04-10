@@ -1,7 +1,6 @@
-
 import time
 
-from robust_serial import Order, read_i8, read_order, write_i8, write_i16, write_order
+from robust_serial import Order, read_order, write_i8, write_i16, write_order
 from robust_serial.utils import open_serial_port
 
 if __name__ == "__main__":

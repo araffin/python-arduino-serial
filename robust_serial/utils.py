@@ -1,11 +1,7 @@
-
 import glob
+import queue
 import sys
-
-try:
-    import queue
-except ImportError:
-    import Queue as queue
+from typing import List, Optional
 
 import serial
 
@@ -16,7 +12,7 @@ class CustomQueue(queue.Queue):
     A custom queue subclass that provides a :meth:`clear` method.
     """
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clears all items from the queue.
         """
@@ -33,12 +29,12 @@ class CustomQueue(queue.Queue):
 
 
 # From https://stackoverflow.com/questions/12090503/listing-available-com-ports-with-python
-def get_serial_ports():
+def get_serial_ports() -> List[str]:
     """
     Lists serial ports.
 
 
-    :return: ([str]) A list of available serial ports
+    :return: A list of available serial ports
     """
     if sys.platform.startswith("win"):
         ports = ["COM%s" % (i + 1) for i in range(256)]
@@ -61,15 +57,20 @@ def get_serial_ports():
     return results
 
 
-def open_serial_port(serial_port=None, baudrate=115200, timeout=0, write_timeout=0):
+def open_serial_port(
+    serial_port: Optional[str] = None,
+    baudrate: int = 115200,
+    timeout: Optional[int] = 0,
+    write_timeout: int = 0,
+) -> serial.Serial:
     """
     Try to open serial port with Arduino
     If not port is specified, it will be automatically detected
 
-    :param serial_port: (str)
-    :param baudrate: (int)
-    :param timeout: (int) None -> blocking mode
-    :param write_timeout: (int)
+    :param serial_port:
+    :param baudrate:
+    :param timeout: None -> blocking mode
+    :param write_timeout:
     :return: (Serial Object)
     """
     # Open serial port (for communication with Arduino)

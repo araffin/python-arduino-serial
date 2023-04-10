@@ -13,22 +13,22 @@
 #
 import os
 import sys
+from typing import Dict
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import robust_serial
+import robust_serial  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
 project = "Robust Arduino Serial Protocol"
-copyright = "2018, Antonin Raffin"
+copyright = "2018-2023, Antonin Raffin"
 author = "Antonin Raffin"
 
 # The short X.Y version
 version = ""
 # The full version, including alpha/beta/rc tags
 release = robust_serial.__version__
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -63,7 +63,7 @@ master_doc = "index"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -88,7 +88,7 @@ else:
 
 
 def setup(app):
-    app.add_stylesheet("css/custom_theme.css")
+    app.add_css_file("css/custom_theme.css")
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -121,7 +121,7 @@ htmlhelp_basename = "RobustArduinoSerialProtocoldoc"
 
 # -- Options for LaTeX output ------------------------------------------------
 
-latex_elements = {
+latex_elements: Dict[str, str] = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',

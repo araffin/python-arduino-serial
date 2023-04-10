@@ -1,4 +1,3 @@
-
 from tempfile import TemporaryFile
 
 from robust_serial import Order, read_i8, read_i16, read_i32, read_order, write_i8, write_i16, write_i32, write_order

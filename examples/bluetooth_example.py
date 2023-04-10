@@ -1,4 +1,3 @@
-
 import argparse
 
 import bluetooth
@@ -25,7 +24,7 @@ def receive_messages():
     # Rename function to work with the lib
     client_sock.read = client_sock.recv
 
-    for i in range(10):
+    for _ in range(10):
         print(f"Received (i8): {read_i8(client_sock)}")
     big_number = read_i32(client_sock)
 

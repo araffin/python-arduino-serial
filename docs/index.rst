@@ -11,7 +11,7 @@ protocol. It was designed to make two arduinos communicate, but can also
 be useful when you want a computer (e.g. a Raspberry Pi) to communicate
 with an Arduino.
 
-It supports both Python 2 and 3.
+It supports both Python 3.8+.
 
 This repository is part of the Robust Arduino Serial project, main
 repository: `https://github.com/araffin/arduino-robust-serial`_

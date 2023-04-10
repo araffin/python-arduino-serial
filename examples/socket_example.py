@@ -1,4 +1,3 @@
-
 import argparse
 import socket
 
@@ -43,7 +42,7 @@ def receive_messages():
     # Wrap socket to work with the lib
     client_sock = SocketAdapter(client_sock)
 
-    for i in range(10):
+    for _ in range(10):
         print(f"Received (i8): {read_i8(client_sock)}")
     big_number = read_i32(client_sock)
 
