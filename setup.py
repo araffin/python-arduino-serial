@@ -13,7 +13,10 @@ setup(
     install_requires=[
         "pyserial",
     ],
-    extras_require={"tests": ["pytest", "pytest-cov", "mypy", "ruff", "black", "isort"]},
+    extras_require={
+        "tests": ["pytest", "pytest-cov", "mypy", "ruff", "black", "isort"],
+        "docs": ["sphinx", "sphinx_rtd_theme", "sphinx-autodoc-typehints"],
+    },
     author="Antonin RAFFIN",
     author_email="antonin.raffin@ensta.org",
     url="https://github.com/araffin/arduino-robust-serial",
