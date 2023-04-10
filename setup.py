@@ -19,9 +19,8 @@ setup(name="robust_serial",
                 if package.startswith('robust_serial')],
       install_requires=[
           'pyserial',
-          'enum34'
       ],
-      tests_require=['pytest'],
+      tests_require=['pytest', "pytest-cov", "mypy"],
       author="Antonin RAFFIN",
       author_email="antonin.raffin@ensta.org",
       url="https://github.com/araffin/arduino-robust-serial",
@@ -29,5 +28,14 @@ setup(name="robust_serial",
       long_description=long_description,
       keywords="serial hardware arduino RS232 communication protocol raspberry",
       license="MIT",
-      version="0.1",
+      version="0.2",
+    python_requires=">=3.7",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+    ],
+
       zip_safe=False)
