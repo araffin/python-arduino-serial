@@ -13,7 +13,7 @@ setup(
     install_requires=[
         "pyserial",
     ],
-    tests_require=["pytest", "pytest-cov", "mypy", "ruff", "black", "isort"],
+    extras_require={"tests": ["pytest", "pytest-cov", "mypy", "ruff", "black", "isort"]},
     author="Antonin RAFFIN",
     author_email="antonin.raffin@ensta.org",
     url="https://github.com/araffin/arduino-robust-serial",
