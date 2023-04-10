@@ -1,12 +1,11 @@
-from __future__ import print_function, division, absolute_import
+from __future__ import absolute_import, division, print_function
 
-import time
 import threading
+import time
 
-from robust_serial import write_order, Order
+from robust_serial import Order, write_order
 from robust_serial.threads import CommandThread, ListenerThread
-
-from robust_serial.utils import open_serial_port, CustomQueue
+from robust_serial.utils import CustomQueue, open_serial_port
 
 
 def reset_command_queue():
@@ -16,7 +15,7 @@ def reset_command_queue():
     command_queue.clear()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         serial_file = open_serial_port(baudrate=115200)
     except Exception as e:
@@ -50,8 +49,10 @@ if __name__ == '__main__':
 
     print("Starting Communication Threads")
     # Threads for arduino communication
-    threads = [CommandThread(serial_file, command_queue, exit_event, n_received_semaphore, serial_lock),
-               ListenerThread(serial_file, exit_event, n_received_semaphore, serial_lock)]
+    threads = [
+        CommandThread(serial_file, command_queue, exit_event, n_received_semaphore, serial_lock),
+        ListenerThread(serial_file, exit_event, n_received_semaphore, serial_lock),
+    ]
     for t in threads:
         t.start()
 

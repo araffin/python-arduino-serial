@@ -1,7 +1,8 @@
-from __future__ import print_function, division, absolute_import
+from __future__ import absolute_import, division, print_function
+
 from tempfile import TemporaryFile
 
-from robust_serial import Order, write_order, read_order, write_i8, write_i16, write_i32, read_i8, read_i16, read_i32
+from robust_serial import Order, read_i8, read_i16, read_i32, read_order, write_i8, write_i16, write_i32, write_order
 
 
 def assert_eq(left, right):

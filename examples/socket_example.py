@@ -1,12 +1,13 @@
-from __future__ import print_function, division
+from __future__ import division, print_function
 
 import argparse
 import socket
 
-from robust_serial import write_i8, write_i32, read_i8, read_i32
+from robust_serial import read_i8, read_i32, write_i8, write_i32
 
 PORT = 4444
 SERVER_ADDR = "localhost"
+
 
 class SocketAdapter(object):
     """
@@ -33,7 +34,7 @@ def receive_messages():
     Receive messages (server side)
     """
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('', PORT))
+    server_socket.bind(("", PORT))
     print("Waiting for client...")
     # Wait for client
     server_socket.listen(1)
@@ -73,13 +74,11 @@ def send_messages(server_address):
     client_socket.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test socket server/client connection")
     arg_group = parser.add_mutually_exclusive_group(required=True)
-    arg_group.add_argument("-s", "--server", dest="server",
-                           action='store_true', default=False, help="Create a server")
-    arg_group.add_argument("-c", "--client", dest="client",
-                           action='store_true', default=False, help="Create a client")
+    arg_group.add_argument("-s", "--server", dest="server", action="store_true", default=False, help="Create a server")
+    arg_group.add_argument("-c", "--client", dest="client", action="store_true", default=False, help="Create a client")
     args = parser.parse_args()
     if args.server:
         receive_messages()

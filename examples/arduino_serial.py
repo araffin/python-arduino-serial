@@ -1,12 +1,11 @@
-from __future__ import print_function, division, absolute_import
+from __future__ import absolute_import, division, print_function
 
 import time
 
-from robust_serial import write_order, Order, write_i8, write_i16, read_i8, read_order
+from robust_serial import Order, read_i8, read_order, write_i8, write_i16, write_order
 from robust_serial.utils import open_serial_port
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         serial_file = open_serial_port(baudrate=115200, timeout=None)
     except Exception as e:

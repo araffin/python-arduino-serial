@@ -1,11 +1,11 @@
-from __future__ import print_function, division, absolute_import
+from __future__ import absolute_import, division, print_function
 
 import threading
 import time
 
 import serial
 
-from .robust_serial import write_order, Order, write_i8, write_i16, decode_order
+from .robust_serial import Order, decode_order, write_i8, write_i16, write_order
 from .utils import queue
 
 rate = 1 / 2000  # 2000 Hz (limit the rate of communication with the arduino)

@@ -1,10 +1,10 @@
-from __future__ import print_function, division
+from __future__ import division, print_function
 
 import argparse
 
 import bluetooth
 
-from robust_serial import write_i8, write_i32, read_i8, read_i32
+from robust_serial import read_i8, read_i32, write_i8, write_i32
 
 CHANNEL = 1
 # show mac address: hciconfig
@@ -62,13 +62,11 @@ def discover_devices():
         print("{} + [{}]".format(bluetooth.lookup_name(bdaddr), bdaddr))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test bluetooth server/client connection")
     arg_group = parser.add_mutually_exclusive_group(required=True)
-    arg_group.add_argument("-s", "--server", dest="server",
-                           action='store_true', default=False, help="Create a server")
-    arg_group.add_argument("-c", "--client", dest="client",
-                           action='store_true', default=False, help="Create a client")
+    arg_group.add_argument("-s", "--server", dest="server", action="store_true", default=False, help="Create a server")
+    arg_group.add_argument("-c", "--client", dest="client", action="store_true", default=False, help="Create a client")
     args = parser.parse_args()
     if args.server:
         receive_messages()
